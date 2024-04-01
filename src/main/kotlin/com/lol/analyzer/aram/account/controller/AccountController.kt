@@ -15,6 +15,6 @@ class AccountController(
     @GetMapping("/by-puuid/{puuid}")
     // TODO: apply DTO
     fun getAccount(@PathVariable("puuid") puuid: String): Account {
-        return this.accountService.getAccountByPuuid(puuid);
+        return this.accountService.getAccountByPuuid(puuid)
     }
 }
