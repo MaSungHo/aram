@@ -1,6 +1,6 @@
 package com.lol.analyzer.aram.account.controller
 
-import com.lol.analyzer.aram.account.entity.Account
+import com.lol.analyzer.aram.account.dto.AccountResponse
 import com.lol.analyzer.aram.account.service.AccountService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -14,7 +14,7 @@ class AccountController(
 ) {
     @GetMapping("/by-puuid/{puuid}")
     // TODO: apply DTO
-    fun getAccount(@PathVariable("puuid") puuid: String): Account {
+    fun getAccount(@PathVariable("puuid") puuid: String): AccountResponse {
         return this.accountService.getAccountByPuuid(puuid)
     }
 }

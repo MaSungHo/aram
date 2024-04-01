@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface AccountRepository: JpaRepository<Account, Long> {
-    // TODO: apply DTO
     fun findByPuuid(puuid: String): Account? {
         return this.findByPuuid(puuid)
     }
