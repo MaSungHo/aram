@@ -18,4 +18,9 @@ spring:
     hibernate:
       ddl-auto: update
 
+springdoc:
+  swagger-ui:
+    path: /swagger/api
+    groups-order: DESC
+    tags-sorter: alpha
 
