@@ -8,10 +8,6 @@ import java.util.UUID
 @Entity(name = "accounts")
 class Account(
         @Column
-        @Comment("Aram 서비스 내에서의 uuid")
-        var uuid: String,
-
-        @Column
         @Comment("Riot 계정의 puuid")
         var puuid: String,
 
@@ -20,6 +16,10 @@ class Account(
 
         @Column(name = "tag_line")
         var tagLine: String,
+
+        @Column
+        @Comment("Aram 서비스 내에서의 uuid")
+        var uuid: String? = null,
 ):BaseEntity() {
         @PrePersist()
         fun setUuid() {

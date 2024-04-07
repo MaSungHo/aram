@@ -16,11 +16,11 @@ import java.time.LocalDateTime
 abstract class BaseEntity(
         @LastModifiedDate
         @Column(name = "updated_at")
-        val updatedAt: LocalDateTime? = null,
+        var updatedAt: LocalDateTime? = LocalDateTime.now(),
 
         @CreatedDate
         @Column(name = "created_at")
-        val createdAt: LocalDateTime? = null,
+        var createdAt: LocalDateTime? = LocalDateTime.now(),
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
