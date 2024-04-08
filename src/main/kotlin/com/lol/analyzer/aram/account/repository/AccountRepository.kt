@@ -9,4 +9,8 @@ interface AccountRepository: JpaRepository<Account, Long> {
     fun findByPuuid(puuid: String): Account? {
         return this.findByPuuid(puuid)
     }
+
+    fun findByGameNameAndTagLine(gameName: String, tagLine: String): Account? {
+        return this.findByGameNameAndTagLine(gameName, tagLine)
+    }
 }
