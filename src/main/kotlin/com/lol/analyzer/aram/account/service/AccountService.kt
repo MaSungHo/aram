@@ -1,6 +1,7 @@
 package com.lol.analyzer.aram.account.service
 
 import com.lol.analyzer.aram.account.dto.AccountCreateRequest
+import com.lol.analyzer.aram.account.dto.AccountDomain
 import com.lol.analyzer.aram.account.dto.AccountResponse
 import com.lol.analyzer.aram.account.entity.Account
 import com.lol.analyzer.aram.account.repository.AccountRepository
@@ -21,9 +22,11 @@ class AccountService(
     }
 
     fun create(createRequest: AccountCreateRequest): AccountResponse {
+        val accountDomain = AccountDomain.from(createRequest)
+
         var account = this.accountRepository.findByGameNameAndTagLine(
-            createRequest.gameName,
-            createRequest.tagLine
+            accountDomain.gameName,
+            accountDomain.tagLine
         )
 
         if (account == null) {
