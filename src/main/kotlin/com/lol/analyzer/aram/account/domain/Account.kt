@@ -1,4 +1,4 @@
-package com.lol.analyzer.aram.account.entity
+package com.lol.analyzer.aram.account.domain
 
 import com.lol.analyzer.aram.common.entity.BaseEntity
 import jakarta.persistence.*

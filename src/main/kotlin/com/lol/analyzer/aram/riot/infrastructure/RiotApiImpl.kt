@@ -1,6 +1,6 @@
-package com.lol.analyzer.aram.common.infrastructure
+package com.lol.analyzer.aram.riot.infrastructure
 
-import com.lol.analyzer.aram.riot.service.RiotApi
+import com.lol.analyzer.aram.riot.domain.RiotApi
 import io.netty.channel.ChannelOption
 import io.netty.handler.timeout.ReadTimeoutHandler
 import org.springframework.context.annotation.Bean
@@ -32,7 +32,7 @@ class RiotApiImpl {
     private fun getWebClient() = WebClient
         .builder()
         .baseUrl(RIOT_API_URL)
-        .defaultHeader("X-Riot-Token", "riot-api-token")
+        .defaultHeader("X-Riot-Token", "RGAPI-e2e116c9-85cb-4fcd-a8ba-cbd25441a4af")
         .clientConnector(ReactorClientHttpConnector(httpClient()))
         .build()
 
