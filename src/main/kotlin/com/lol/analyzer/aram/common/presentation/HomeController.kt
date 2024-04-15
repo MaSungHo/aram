@@ -1,4 +1,4 @@
-package com.lol.analyzer.aram.common.controller
+package com.lol.analyzer.aram.common.presentation
 
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.GetMapping

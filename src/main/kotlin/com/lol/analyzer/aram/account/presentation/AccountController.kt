@@ -1,8 +1,8 @@
-package com.lol.analyzer.aram.account.controller
+package com.lol.analyzer.aram.account.presentation
 
 import com.lol.analyzer.aram.account.dto.AccountCreateRequest
 import com.lol.analyzer.aram.account.dto.AccountResponse
-import com.lol.analyzer.aram.account.service.AccountService
+import com.lol.analyzer.aram.account.application.AccountService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.GetMapping

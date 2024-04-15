@@ -1,11 +1,11 @@
-package com.lol.analyzer.aram.account.service
+package com.lol.analyzer.aram.account.application
 
 import com.lol.analyzer.aram.account.dto.AccountCreateRequest
 import com.lol.analyzer.aram.account.dto.AccountDomain
 import com.lol.analyzer.aram.account.dto.AccountResponse
-import com.lol.analyzer.aram.account.entity.Account
-import com.lol.analyzer.aram.account.repository.AccountRepository
-import com.lol.analyzer.aram.riot.service.RiotApi
+import com.lol.analyzer.aram.account.domain.Account
+import com.lol.analyzer.aram.account.domain.AccountRepository
+import com.lol.analyzer.aram.riot.domain.RiotApi
 import org.springframework.stereotype.Service
 
 @Service

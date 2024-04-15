@@ -1,6 +1,6 @@
 package com.lol.analyzer.aram.account.dto
 
-import com.lol.analyzer.aram.account.entity.Account
+import com.lol.analyzer.aram.account.domain.Account
 
 data class AccountResponse(
         val gameName: String,

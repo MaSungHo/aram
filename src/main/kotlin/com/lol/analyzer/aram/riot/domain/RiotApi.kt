@@ -1,4 +1,4 @@
-package com.lol.analyzer.aram.riot.service
+package com.lol.analyzer.aram.riot.domain
 
 import com.lol.analyzer.aram.riot.dto.RiotAccountResponse
 import org.springframework.web.bind.annotation.PathVariable
