@@ -1,6 +1,6 @@
 package com.lol.analyzer.aram.account.domain
 
-import com.lol.analyzer.aram.common.entity.BaseEntity
+import com.lol.analyzer.aram.common.domain.BaseEntity
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 import java.util.UUID
