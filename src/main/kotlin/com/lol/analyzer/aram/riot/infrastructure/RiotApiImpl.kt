@@ -3,6 +3,7 @@ package com.lol.analyzer.aram.riot.infrastructure
 import com.lol.analyzer.aram.riot.domain.RiotApi
 import io.netty.channel.ChannelOption
 import io.netty.handler.timeout.ReadTimeoutHandler
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.client.reactive.ReactorClientHttpConnector
@@ -15,8 +16,13 @@ import java.util.concurrent.TimeUnit
 
 // https://docs.spring.io/spring-framework/docs/6.0.0/reference/html/integration.html#rest-http-interface
 @Configuration
-class RiotApiImpl {
+class RiotApiImpl(
+    @Value("\${riot.api-key}")
+    private val riotApiKey: String,
+) {
     companion object {
+        @Value("\${riot.api-key}")
+        lateinit var RIOT_API_KEY: String
         const val RIOT_API_URL = "https://asia.api.riotgames.com"
         const val TIMEOUT_MILLIS = 60000L
     }
@@ -29,12 +35,14 @@ class RiotApiImpl {
             .createClient(RiotApi::class.java)
     }
 
-    private fun getWebClient() = WebClient
-        .builder()
-        .baseUrl(RIOT_API_URL)
-        .defaultHeader("X-Riot-Token", "riot-api-token")
-        .clientConnector(ReactorClientHttpConnector(httpClient()))
-        .build()
+    private fun getWebClient(): WebClient {
+        return WebClient
+            .builder()
+            .baseUrl(RIOT_API_URL)
+            .defaultHeader("X-Riot-Token", riotApiKey)
+            .clientConnector(ReactorClientHttpConnector(httpClient()))
+            .build()
+    }
 
     private fun httpClient() = HttpClient
         .create()

@@ -9,8 +9,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/aram?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: topsecret
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     open-in-view: false
@@ -24,3 +24,5 @@ springdoc:
     groups-order: DESC
     tags-sorter: alpha
 
+riot:
+  api-key: ${RIOT_API_KEY}
