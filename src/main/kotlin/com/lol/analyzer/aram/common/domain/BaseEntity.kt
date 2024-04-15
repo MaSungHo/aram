@@ -1,4 +1,4 @@
-package com.lol.analyzer.aram.common.entity
+package com.lol.analyzer.aram.common.domain
 
 import jakarta.persistence.Column
 import jakarta.persistence.EntityListeners
