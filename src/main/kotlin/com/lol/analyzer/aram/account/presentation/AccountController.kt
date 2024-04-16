@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController
 class AccountController(
         private val accountService: AccountService
 ) {
-    @GetMapping("/by-puuid/{puuid}")
-    @Operation(description = "PUUID 로 Account 조회")
-    fun getAccount(@PathVariable("puuid") puuid: String): AccountResponse {
-        return this.accountService.getAccountByPuuid(puuid)
+    @GetMapping("/by-uuid/{uuid}")
+    @Operation(description = "UUID 로 Account 조회")
+    fun getAccount(@PathVariable("uuid") uuid: String): AccountResponse {
+        return this.accountService.getAccountByUuid(uuid)
     }
 
     @PostMapping()

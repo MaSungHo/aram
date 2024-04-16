@@ -13,9 +13,9 @@ class AccountService(
     private val accountRepository: AccountRepository,
     private val riotApi: RiotApi
 ) {
-    fun getAccountByPuuid(puuid: String): AccountResponse {
-        val account = this.accountRepository.findByPuuid(puuid) ?: throw IllegalArgumentException(
-                "No account with that puuid."
+    fun getAccountByUuid(uuid: String): AccountResponse {
+        val account = this.accountRepository.findByUuid(uuid) ?: throw IllegalArgumentException(
+                "No account with that uuid."
         )
 
         return AccountResponse.from(account)
