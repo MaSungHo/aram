@@ -5,19 +5,27 @@ import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 import java.util.UUID
 
-@Entity(name = "accounts")
+@Entity
+@Table(
+        name = "accounts",
+        indexes = [
+                Index(name = "idx_uuid", columnList = "uuid", unique = true),
+                Index(name = "idx_game_name_and_tag_line", columnList = "gameName, tagLine", unique = true)
+        ]
+)
 class Account(
-        @Column
+        @Column(unique = true)
         @Comment("Riot 계정의 puuid")
         var puuid: String,
 
-        @Column(name = "game_name")
+        // https://support-leagueoflegends.riotgames.com/hc/en-us/articles/360041788533-Riot-ID-FAQ
+        @Column(name = "game_name", length = 20)
         var gameName: String,
 
-        @Column(name = "tag_line")
+        @Column(name = "tag_line", length = 10)
         var tagLine: String,
 
-        @Column
+        @Column(unique = true)
         @Comment("Aram 서비스 내에서의 uuid")
         var uuid: String? = null,
 ):BaseEntity() {
