@@ -4,13 +4,13 @@ import com.lol.analyzer.aram.account.dto.AccountResponse
 import com.lol.analyzer.aram.account.domain.Account
 import com.lol.analyzer.aram.account.domain.AccountRepository
 import com.lol.analyzer.aram.account.exception.NotFoundException
-import com.lol.analyzer.aram.riot.domain.RiotApi
+import com.lol.analyzer.aram.riot.domain.LolApi
 import org.springframework.stereotype.Service
 
 @Service
 class AccountService(
     private val accountRepository: AccountRepository,
-    private val riotApi: RiotApi
+    private val riotApi: LolApi
 ) {
     fun getAccountByUuid(uuid: String): AccountResponse {
         val account = this.accountRepository.findByUuid(uuid) ?: throw NotFoundException(

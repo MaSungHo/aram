@@ -26,3 +26,4 @@ springdoc:
 
 riot:
   tft-api-key: ${TFT_API_KEY}
+  lol-api-key: ${LOL_API_KEY}
