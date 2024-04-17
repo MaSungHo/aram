@@ -25,4 +25,4 @@ springdoc:
     tags-sorter: alpha
 
 riot:
-  api-key: ${RIOT_API_KEY}
+  tft-api-key: ${TFT_API_KEY}

@@ -17,12 +17,11 @@ import java.util.concurrent.TimeUnit
 // https://docs.spring.io/spring-framework/docs/6.0.0/reference/html/integration.html#rest-http-interface
 @Configuration
 class RiotApiImpl(
-    @Value("\${riot.api-key}")
-    private val riotApiKey: String,
+    @Value("\${riot.tft-api-key}")
+    private val tftApiKey: String,
+    // TODO("LoL API")
 ) {
     companion object {
-        @Value("\${riot.api-key}")
-        lateinit var RIOT_API_KEY: String
         const val RIOT_API_URL = "https://asia.api.riotgames.com"
         const val TIMEOUT_MILLIS = 60000L
     }
@@ -39,7 +38,7 @@ class RiotApiImpl(
         return WebClient
             .builder()
             .baseUrl(RIOT_API_URL)
-            .defaultHeader("X-Riot-Token", riotApiKey)
+            .defaultHeader("X-Riot-Token", tftApiKey)
             .clientConnector(ReactorClientHttpConnector(httpClient()))
             .build()
     }
