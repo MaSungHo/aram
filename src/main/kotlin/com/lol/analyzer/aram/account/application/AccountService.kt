@@ -1,7 +1,5 @@
 package com.lol.analyzer.aram.account.application
 
-import com.lol.analyzer.aram.account.dto.AccountCreateRequest
-import com.lol.analyzer.aram.account.dto.AccountDomain
 import com.lol.analyzer.aram.account.dto.AccountResponse
 import com.lol.analyzer.aram.account.domain.Account
 import com.lol.analyzer.aram.account.domain.AccountRepository
