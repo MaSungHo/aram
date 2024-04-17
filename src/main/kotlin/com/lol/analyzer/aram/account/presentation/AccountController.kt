@@ -20,14 +20,17 @@ class AccountController(
 ) {
     @GetMapping("/by-uuid/{uuid}")
     @Operation(description = "UUID 로 Account 조회")
-    fun getAccount(@PathVariable("uuid") uuid: String): AccountResponse {
+    fun getAccountByUuid(@PathVariable("uuid") uuid: String): AccountResponse {
         return this.accountService.getAccountByUuid(uuid)
     }
 
-    @PostMapping()
-    @Operation(description = "Account 생성")
-    fun createAccount(@RequestBody accountCreateRequest: AccountCreateRequest): AccountResponse {
-        return this.accountService.create(accountCreateRequest)
+    @GetMapping("/by-riot-info/{gameName}/{tagLine}")
+    @Operation(description = "Game Name & Tag Line 으로 Account 조회")
+    fun getAccountByRiotInfo(
+        @PathVariable("gameName") gameName: String,
+        @PathVariable("tagLine") tagLine: String
+    ): AccountResponse {
+        return this.accountService.getAccountByRiotInfo(gameName, tagLine)
     }
 
 }
