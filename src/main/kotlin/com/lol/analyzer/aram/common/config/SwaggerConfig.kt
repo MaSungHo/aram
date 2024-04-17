@@ -30,7 +30,7 @@ class SwaggerConfig {
 
     private fun apiInfo(): Info {
         return Info()
-                .title("API Test")
+                .title("ARAM API")
                 .description("ARAM LoL Analyzer API")
                 .version("1.0.0")
     }

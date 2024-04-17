@@ -22,16 +22,17 @@ class AccountService(
         return AccountResponse.from(account)
     }
 
-    fun create(createRequest: AccountCreateRequest): AccountResponse {
-        val accountDomain = AccountDomain.from(createRequest)
-
+    fun getAccountByRiotInfo(
+        gameName: String,
+        tagLine: String
+    ): AccountResponse {
         var account = this.accountRepository.findByGameNameAndTagLine(
-            accountDomain.gameName,
-            accountDomain.tagLine
+            gameName,
+            tagLine
         )
 
         if (account == null) {
-            val accountResponse = riotApi.getAccountByRiotId(createRequest.gameName, createRequest.tagLine)
+            val accountResponse = riotApi.getAccountByRiotId(gameName, tagLine)
             account = this.accountRepository.save(
                 Account(
                     puuid = accountResponse.puuid,
