@@ -28,7 +28,7 @@ class Account(
         @Column(unique = true)
         @Comment("Aram 서비스 내에서의 uuid")
         var uuid: String? = null,
-):BaseEntity() {
+): BaseEntity() {
         @PrePersist()
         fun setUuid() {
                 this.uuid = UUID.randomUUID().toString()
