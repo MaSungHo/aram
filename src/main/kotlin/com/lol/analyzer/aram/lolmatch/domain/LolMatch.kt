@@ -15,16 +15,16 @@ import jakarta.persistence.Table
     ]
 )
 class LolMatch(
-    @Column(name = "match_id")
+    @Column(name = "match_id", length = 30)
     var matchId: String,
 
-    @Column(name = "map_id")
+    @Column(name = "map_id") // TODO enum
     var mapId: Int,
 
-    @Column(name = "game_mode")
+    @Column(name = "game_mode", length = 30) // TODO enum
     var gameMode: String,
 
-    @Column(name = "game_type")
+    @Column(name = "game_type", length = 20) // TODO enum
     var gameType: String,
 
     @Column(name = "game_start_timestamp")
