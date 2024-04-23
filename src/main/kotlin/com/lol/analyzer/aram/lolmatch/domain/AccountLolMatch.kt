@@ -1,16 +1,13 @@
 package com.lol.analyzer.aram.lolmatch.domain
 
+import com.lol.analyzer.aram.account.domain.Account
 import com.lol.analyzer.aram.common.domain.BaseEntity
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
+// https://spoqa.github.io/2022/08/16/kotlin-jpa-entity.html
 @Entity
-@Table
+@Table(name = "account_lol_matches")
 class AccountLolMatch(
-    @ManyToOne()
-
     @Column(length = 20) // TODO enum
     var lane: String,
 
@@ -64,5 +61,16 @@ class AccountLolMatch(
 
     @Column(name = "item_5")
     var item5: Int,
+
+    account: Account,
+
+    lolMatch: LolMatch,
 ): BaseEntity() {
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "lol_match_id", nullable = false)
+    var lolMatch: LolMatch = lolMatch
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "account_id", nullable = false)
+    var account: Account = account
 }

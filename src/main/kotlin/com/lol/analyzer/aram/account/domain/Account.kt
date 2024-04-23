@@ -1,6 +1,8 @@
 package com.lol.analyzer.aram.account.domain
 
 import com.lol.analyzer.aram.common.domain.BaseEntity
+import com.lol.analyzer.aram.lolmatch.domain.AccountLolMatch
+import com.lol.analyzer.aram.lolmatch.domain.LolMatch
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 import java.util.UUID
@@ -29,6 +31,11 @@ class Account(
         @Comment("Aram 서비스 내에서의 uuid")
         var uuid: String? = null,
 ): BaseEntity() {
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
+        private var _accountLolMatches: MutableList<AccountLolMatch> = mutableListOf()
+        val accountLolMatches: List<AccountLolMatch>
+                get() = _accountLolMatches.toList()
+
         @PrePersist()
         fun setUuid() {
                 this.uuid = UUID.randomUUID().toString()
