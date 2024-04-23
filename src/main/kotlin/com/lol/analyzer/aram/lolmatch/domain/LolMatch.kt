@@ -1,10 +1,7 @@
 package com.lol.analyzer.aram.lolmatch.domain
 
 import com.lol.analyzer.aram.common.domain.BaseEntity
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Index
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Table(
@@ -31,6 +28,10 @@ class LolMatch(
     var gameStartTimestamp: Long,
 
     @Column(name = "game_end_timestamp")
-    var gameEndTimestamp: Long
+    var gameEndTimestamp: Long,
 ): BaseEntity() {
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "lolMatch")
+    private var _accountLolMatches: MutableList<AccountLolMatch> = mutableListOf()
+    val accountLolMatches: List<AccountLolMatch>
+        get() = _accountLolMatches.toList()
 }
