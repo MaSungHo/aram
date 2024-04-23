@@ -1,4 +1,4 @@
-package com.lol.analyzer.aram.common.enums
+package com.lol.analyzer.aram.common.enums._enums
 
 enum class ErrorCode(val code: String) {
     // common

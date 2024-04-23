@@ -1,7 +1,7 @@
 package com.lol.analyzer.aram.account.exception
 
 import com.lol.analyzer.aram.account.dto.ExceptionResponse
-import com.lol.analyzer.aram.common.enums.ErrorCode
+import com.lol.analyzer.aram.common.enums._enums.ErrorCode
 import org.springframework.http.HttpStatusCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler

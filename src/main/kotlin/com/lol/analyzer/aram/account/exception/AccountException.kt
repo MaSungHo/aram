@@ -1,6 +1,6 @@
 package com.lol.analyzer.aram.account.exception
 
-import com.lol.analyzer.aram.common.enums.ErrorCode
+import com.lol.analyzer.aram.common.enums._enums.ErrorCode
 
 open class AccountException(
     override val message: String,

@@ -1,6 +1,9 @@
 package com.lol.analyzer.aram.lolmatch.domain
 
 import com.lol.analyzer.aram.common.domain.BaseEntity
+import com.lol.analyzer.aram.common.enums._enums.GameMode
+import com.lol.analyzer.aram.common.enums._enums.GameType
+import com.lol.analyzer.aram.common.enums.converter.*
 import jakarta.persistence.*
 
 @Entity
@@ -11,18 +14,21 @@ import jakarta.persistence.*
         Index(name = "idx_game_start_timestamp", columnList = "gameStartTimestamp"),
     ]
 )
+@Convert(converter = MapsConverter::class, attributeName = "mapId")
+@Convert(converter = GameModeConverter::class, attributeName = "gameMode")
+@Convert(converter = GameTypeConverter::class, attributeName = "gameType")
 class LolMatch(
     @Column(name = "match_id", length = 30)
     var matchId: String,
 
-    @Column(name = "map_id") // TODO enum
+    @Column(name = "map_id")
     var mapId: Int,
 
-    @Column(name = "game_mode", length = 30) // TODO enum
-    var gameMode: String,
+    @Column(name = "game_mode", length = 30)
+    var gameMode: GameMode,
 
-    @Column(name = "game_type", length = 20) // TODO enum
-    var gameType: String,
+    @Column(name = "game_type", length = 20)
+    var gameType: GameType,
 
     @Column(name = "game_start_timestamp")
     var gameStartTimestamp: Long,
