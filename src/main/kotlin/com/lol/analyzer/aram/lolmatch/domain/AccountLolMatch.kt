@@ -8,7 +8,7 @@ import jakarta.persistence.*
 @Entity
 @Table(name = "account_lol_matches")
 class AccountLolMatch(
-    @Column(length = 20) // TODO enum
+    @Column(length = 20)
     var lane: String,
 
     @Column(name = "physical_damage_dealt")

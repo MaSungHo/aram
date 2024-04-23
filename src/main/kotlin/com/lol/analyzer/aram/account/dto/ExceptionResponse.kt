@@ -1,8 +1,6 @@
 package com.lol.analyzer.aram.account.dto
 
-import com.lol.analyzer.aram.common.enums.ErrorCode
-import org.springframework.http.HttpStatus
-import org.springframework.http.HttpStatusCode
+import com.lol.analyzer.aram.common.enums._enums.ErrorCode
 
 data class ExceptionResponse(
     val statusCode: Int,
