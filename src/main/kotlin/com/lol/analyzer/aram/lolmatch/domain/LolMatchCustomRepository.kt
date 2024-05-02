@@ -6,4 +6,7 @@ interface LolMatchCustomRepository {
     fun getLolMatchesByAccountPuuid(puuid: String, cursor: Long, count : Int): List<LolMatch>
 
     fun getLolMatchesCountAndLastLolMatchId(puuid: String): Pair<Int, String?>
+    fun saveLolMatch(
+
+    )
 }

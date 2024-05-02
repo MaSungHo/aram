@@ -1,7 +1,7 @@
 package com.lol.analyzer.aram.riot.domain
 
-import com.lol.analyzer.aram.riot.dto.RiotAccountResponse
-import com.lol.analyzer.aram.riot.dto.RiotLolMatchResponse
+import com.lol.analyzer.aram.riot.dto.response.account.RiotAccountResponse
+import com.lol.analyzer.aram.riot.dto.response.lolmatch.RiotLolMatchResponse
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.service.annotation.GetExchange
