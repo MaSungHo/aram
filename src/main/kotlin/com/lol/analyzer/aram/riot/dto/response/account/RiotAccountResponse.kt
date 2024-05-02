@@ -1,4 +1,4 @@
-package com.lol.analyzer.aram.riot.dto
+package com.lol.analyzer.aram.riot.dto.response.account
 
 data class RiotAccountResponse(
     val puuid: String,
