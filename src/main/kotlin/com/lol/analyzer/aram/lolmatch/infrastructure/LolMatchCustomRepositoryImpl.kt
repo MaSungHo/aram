@@ -30,10 +30,9 @@ class LolMatchCustomRepositoryImpl(
         val qLolMatch = QLolMatch.lolMatch
         val qAccountLolMatch = QAccountLolMatch.accountLolMatch
 
-        // TODO: fix N+1
         val query = jpaQueryFactory
             .selectFrom(qLolMatch)
-            .innerJoin(qLolMatch._accountLolMatches, qAccountLolMatch)
+            .innerJoin(qLolMatch._accountLolMatches, qAccountLolMatch).fetchJoin()
             .innerJoin(qAccountLolMatch.account, qAccount).on(qAccount.puuid.eq(puuid))
             .where(qLolMatch.id.gt(cursor))
             .limit(count.toLong())
