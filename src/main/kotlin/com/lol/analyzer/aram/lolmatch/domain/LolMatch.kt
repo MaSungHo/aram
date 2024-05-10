@@ -3,6 +3,7 @@ package com.lol.analyzer.aram.lolmatch.domain
 import com.lol.analyzer.aram.common.domain.BaseEntity
 import com.lol.analyzer.aram.common.enums._enums.GameMode
 import com.lol.analyzer.aram.common.enums._enums.GameType
+import com.lol.analyzer.aram.common.enums._enums.Maps
 import com.lol.analyzer.aram.common.enums.converter.*
 import jakarta.persistence.*
 
@@ -22,7 +23,7 @@ class LolMatch(
     var matchId: String,
 
     @Column(name = "map_id")
-    var mapId: Int,
+    var mapId: Maps,
 
     @Column(name = "game_mode", length = 30)
     var gameMode: GameMode,
@@ -36,8 +37,12 @@ class LolMatch(
     @Column(name = "game_end_timestamp")
     var gameEndTimestamp: Long,
 ): BaseEntity() {
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "lolMatch")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "lolMatch", cascade = [CascadeType.PERSIST, CascadeType.REMOVE])
     private var _accountLolMatches: MutableList<AccountLolMatch> = mutableListOf()
     val accountLolMatches: List<AccountLolMatch>
         get() = _accountLolMatches.toList()
+
+    fun addAccountLolMatch(accountLolMatch: AccountLolMatch) {
+        this._accountLolMatches.add(accountLolMatch)
+    }
 }
