@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.reactive.function.client.WebClientResponseException
 
 @RestControllerAdvice(basePackages = ["com.lol.analyzer.aram.account"])
-class ExceptionHandler {
+class AccountExceptionHandler {
     @ExceptionHandler(WebClientResponseException::class)
     fun webClientResponseException(e: WebClientResponseException): ResponseEntity<ExceptionResponse> {
         return ResponseEntity(ExceptionResponse(e.statusCode.value(), ErrorCode.RIOT_RESPONSE_ERROR, e.message), e.statusCode)
