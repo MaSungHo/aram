@@ -90,9 +90,6 @@ class LolMatchService(
 
         val data = lolMatches.map { lolMatch ->  LoadLolMatchResponse.from(lolMatch) }
 
-        return LoadLolMatchesByUuidResponse(
-            count = data.size,
-            data = data
-        )
+        return LoadLolMatchesByUuidResponse(data)
     }
 }
