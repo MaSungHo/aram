@@ -6,6 +6,7 @@ import com.lol.analyzer.aram.lolmatch.domain.LolMatch
 import com.lol.analyzer.aram.lolmatch.domain.LolMatchCustomRepository
 import com.lol.analyzer.aram.lolmatch.dto.command.LoadLolMatchCommand
 import com.lol.analyzer.aram.lolmatch.dto.response.LoadLolMatchResponse
+import com.lol.analyzer.aram.lolmatch.dto.response.LoadLolMatchesByUuidResponse
 import com.lol.analyzer.aram.riot.domain.LolApi
 import jakarta.transaction.Transactional
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
@@ -20,7 +21,7 @@ class LolMatchService(
     private val lolApi: LolApi,
 ) {
     @Transactional
-    fun loadLolMatchesByUuid(loadLolMatchCommand: LoadLolMatchCommand): List<LoadLolMatchResponse> {
+    fun loadLolMatchesByUuid(loadLolMatchCommand: LoadLolMatchCommand): LoadLolMatchesByUuidResponse {
         val account = this.accountRepository.findByUuid(loadLolMatchCommand.uuid) ?: throw NotFoundException()
         val lolMatches = this.lolMatchRepository.getLolMatchesByAccountPuuid(
             puuid = account.puuid,
@@ -81,12 +82,17 @@ class LolMatchService(
                     if (lolMatches.size < loadLolMatchCommand.count) { lolMatches.add(lolMatch) }
                 } catch (e: WebClientResponseException) {
                     if (e.statusCode != HttpStatusCode.valueOf(404)) {
-                        throw IllegalArgumentException()
+                        throw e
                     }
                 }
             }
         }
 
-        return lolMatches.map { lolMatch ->  LoadLolMatchResponse.from(lolMatch) }
+        val data = lolMatches.map { lolMatch ->  LoadLolMatchResponse.from(lolMatch) }
+
+        return LoadLolMatchesByUuidResponse(
+            count = data.size,
+            data = data
+        )
     }
 }
