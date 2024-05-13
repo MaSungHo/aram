@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.boot.runApplication
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 
-@EnableJpaAuditing
 @SpringBootApplication(exclude = [SecurityAutoConfiguration::class])
 class AramApplication
 
