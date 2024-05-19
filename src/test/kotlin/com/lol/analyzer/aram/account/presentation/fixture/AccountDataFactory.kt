@@ -7,7 +7,7 @@ import com.lol.analyzer.aram.common.enums._enums.ErrorCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.reactive.function.client.WebClientResponseException
 
-class AccountData {
+class AccountDataFactory {
     companion object {
         private fun accountResponse(
             puuid: String = "puuid",

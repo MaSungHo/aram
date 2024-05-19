@@ -1,10 +1,7 @@
 package com.lol.analyzer.aram.account.presentation
 
 import com.lol.analyzer.aram.account.application.AccountService
-import com.lol.analyzer.aram.account.domain.Account
-import com.lol.analyzer.aram.account.dto.AccountResponse
-import com.lol.analyzer.aram.account.dto.ExceptionResponse
-import com.lol.analyzer.aram.account.presentation.fixture.AccountData
+import com.lol.analyzer.aram.account.presentation.fixture.AccountDataFactory
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.every
 import io.mockk.junit5.MockKExtension
@@ -14,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.web.reactive.function.client.WebClientResponseException
 
@@ -35,7 +30,7 @@ class AccountControllerSpec(
             val uuid = "random-uuid-test"
 
             When("uuid 에 해당하는 Account 가 존재할 때") {
-                val data = AccountData.uuidResponse(uuid)
+                val data = AccountDataFactory.uuidResponse(uuid)
                 every { accountService.getAccountByUuid(uuid) } returns data
 
                 Then("AccountResponse 를 반환") {
@@ -55,7 +50,7 @@ class AccountControllerSpec(
                     mockMvc.get("/api/accounts/by-uuid/${uuid}")
                         .andExpect {
                             status { MockMvcResultMatchers.status().isNotFound }
-                            content { AccountData.exceptionResponse(exception) }
+                            content { AccountDataFactory.exceptionResponse(exception) }
                         }
                 }
             }
@@ -66,7 +61,7 @@ class AccountControllerSpec(
             val tagLine = "testTagLine"
 
             When("gameName 과 tagLine 을 받았을 때") {
-                val data = AccountData.riotInfoResponse(gameName, tagLine)
+                val data = AccountDataFactory.riotInfoResponse(gameName, tagLine)
                 every { accountService.getAccountByRiotInfo(gameName, tagLine) } returns data
 
                 Then("AccountResponse 를 반환") {
@@ -86,7 +81,7 @@ class AccountControllerSpec(
                     mockMvc.get("/by-riot-info/${gameName}/${tagLine}")
                         .andExpect {
                             status { MockMvcResultMatchers.status().isNotFound }
-                            content { AccountData.exceptionResponse(exception) }
+                            content { AccountDataFactory.exceptionResponse(exception) }
                         }
                 }
             }
