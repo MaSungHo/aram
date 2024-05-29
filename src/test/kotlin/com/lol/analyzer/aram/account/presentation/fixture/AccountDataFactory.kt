@@ -9,6 +9,14 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 class AccountDataFactory {
     companion object {
+        fun account() = Account("puuid", "Test user", "KR1","uuid")
+
+        fun uuidResponse(uuid: String) = accountResponse(uuid = uuid)
+
+        fun riotInfoResponse(gameName: String, tagLine: String) = accountResponse(gameName = gameName, tagLine = tagLine)
+
+        fun exceptionResponse(e: WebClientResponseException) = ResponseEntity(ExceptionResponse(e.statusCode.value(), ErrorCode.RIOT_RESPONSE_ERROR, e.message), e.statusCode)
+
         private fun accountResponse(
             puuid: String = "puuid",
             gameName: String = "Test user",
@@ -18,11 +26,5 @@ class AccountDataFactory {
             val account = Account(puuid, gameName, tagLine, uuid)
             return AccountResponse.from(account)
         }
-
-        fun uuidResponse(uuid: String) = accountResponse(uuid = uuid)
-
-        fun riotInfoResponse(gameName: String, tagLine: String) = accountResponse(gameName = gameName, tagLine = tagLine)
-
-        fun exceptionResponse(e: WebClientResponseException) = ResponseEntity(ExceptionResponse(e.statusCode.value(), ErrorCode.RIOT_RESPONSE_ERROR, e.message), e.statusCode)
     }
 }
