@@ -1,7 +1,7 @@
 package com.lol.analyzer.aram.account.presentation
 
 import com.lol.analyzer.aram.account.application.AccountService
-import com.lol.analyzer.aram.account.presentation.fixture.AccountDataFactory
+import com.lol.analyzer.aram.account.fixture.AccountDataFactory
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.every
 import io.mockk.junit5.MockKExtension

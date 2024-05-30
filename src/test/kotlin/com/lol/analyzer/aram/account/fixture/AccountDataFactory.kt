@@ -1,4 +1,4 @@
-package com.lol.analyzer.aram.account.presentation.fixture
+package com.lol.analyzer.aram.account.fixture
 
 import com.lol.analyzer.aram.account.domain.Account
 import com.lol.analyzer.aram.account.dto.AccountResponse
@@ -9,7 +9,12 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 class AccountDataFactory {
     companion object {
-        fun account() = Account("puuid", "Test user", "KR1","uuid")
+        fun account(
+            puuid: String = "puuid",
+            gameName: String = "Test user",
+            tagLine: String = "KR1",
+            uuid: String = "random-uuid",
+        ) = Account(puuid, gameName, tagLine, uuid)
 
         fun uuidResponse(uuid: String) = accountResponse(uuid = uuid)
 
