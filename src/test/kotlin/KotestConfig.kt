@@ -4,6 +4,6 @@ import io.kotest.extensions.spring.SpringTestLifecycleMode
 
 class KotestConfig: AbstractProjectConfig() {
     override fun extensions() = listOf(
-        SpringTestExtension(SpringTestLifecycleMode.Root)
+        SpringTestExtension(SpringTestLifecycleMode.Test)
     )
 }

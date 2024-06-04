@@ -4,11 +4,8 @@ import com.lol.analyzer.aram.account.application.AccountService
 import com.lol.analyzer.aram.account.fixture.AccountDataFactory
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.every
-import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
-import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.web.servlet.MockMvc
@@ -16,8 +13,6 @@ import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.web.reactive.function.client.WebClientResponseException
 
-@AutoConfigureMockMvc
-@ExtendWith(MockKExtension::class)
 @WebMvcTest(AccountController::class)
 class AccountControllerSpec(
     @Autowired val mockMvc: MockMvc,
