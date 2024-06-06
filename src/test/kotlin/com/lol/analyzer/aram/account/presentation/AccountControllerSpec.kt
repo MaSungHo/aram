@@ -2,12 +2,11 @@ package com.lol.analyzer.aram.account.presentation
 
 import com.lol.analyzer.aram.account.application.AccountService
 import com.lol.analyzer.aram.account.fixture.AccountDataFactory
+import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.every
-import io.mockk.mockk
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
@@ -16,10 +15,8 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 @WebMvcTest(AccountController::class)
 class AccountControllerSpec(
     @Autowired val mockMvc: MockMvc,
+    @MockkBean val accountService: AccountService
 ): BehaviorSpec() {
-    @MockBean
-    private val accountService = mockk<AccountService>()
-
     init {
         Given("getAccountByUuid") {
             val uuid = "random-uuid-test"
