@@ -7,9 +7,9 @@ import com.lol.analyzer.aram.lolmatch.domain.LolMatchCustomRepository
 import com.lol.analyzer.aram.lolmatch.dto.command.LoadLolMatchCommand
 import com.lol.analyzer.aram.lolmatch.dto.response.LoadLolMatchResponse
 import com.lol.analyzer.aram.lolmatch.dto.response.LoadLolMatchesByUuidResponse
+import com.lol.analyzer.aram.lolmatch.exception.NotFoundException
 import com.lol.analyzer.aram.riot.domain.LolApi
 import jakarta.transaction.Transactional
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
 import org.springframework.http.HttpStatusCode
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClientResponseException
@@ -22,7 +22,7 @@ class LolMatchService(
 ) {
     @Transactional
     fun loadLolMatchesByUuid(loadLolMatchCommand: LoadLolMatchCommand): LoadLolMatchesByUuidResponse {
-        val account = this.accountRepository.findByUuid(loadLolMatchCommand.uuid) ?: throw NotFoundException()
+        val account = this.accountRepository.findByUuid(loadLolMatchCommand.uuid) ?: throw NotFoundException("Account not found")
         val lolMatches = this.lolMatchRepository.getLolMatchesByAccountPuuid(
             puuid = account.puuid,
             cursor = loadLolMatchCommand.cursor,
@@ -42,7 +42,7 @@ class LolMatchService(
                 try {
                     val (metadata, info) = this.lolApi.getLolMatchByMatchId(matchId)
 
-                    val participant = info.participants.find { p -> p.puuid == account.puuid } ?: throw NotFoundException()
+                    val participant = info.participants.find { p -> p.puuid == account.puuid } ?: throw NotFoundException("Account data not found from match data")
 
                     val lolMatch = this.lolMatchRepository.getLolMatchByMatchId(matchId) ?: LolMatch(
                         matchId = metadata.matchId,

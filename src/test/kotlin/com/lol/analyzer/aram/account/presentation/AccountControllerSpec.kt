@@ -14,8 +14,8 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 @WebMvcTest(AccountController::class)
 class AccountControllerSpec(
-    @Autowired val mockMvc: MockMvc,
-    @MockkBean val accountService: AccountService
+    @Autowired private val mockMvc: MockMvc,
+    @MockkBean private val accountService: AccountService
 ): BehaviorSpec() {
     init {
         Given("getAccountByUuid") {

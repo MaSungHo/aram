@@ -2,7 +2,7 @@ package com.lol.analyzer.aram.account.fixture
 
 import com.lol.analyzer.aram.account.domain.Account
 import com.lol.analyzer.aram.account.dto.AccountResponse
-import com.lol.analyzer.aram.account.dto.ExceptionResponse
+import com.lol.analyzer.aram.common.dto.response.ExceptionResponse
 import com.lol.analyzer.aram.common.enums._enums.ErrorCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.reactive.function.client.WebClientResponseException

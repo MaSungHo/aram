@@ -1,4 +1,4 @@
-package com.lol.analyzer.aram.account.dto
+package com.lol.analyzer.aram.common.dto.response
 
 import com.lol.analyzer.aram.common.enums._enums.ErrorCode
 
