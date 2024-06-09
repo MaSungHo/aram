@@ -18,16 +18,25 @@ class LolMatchControllerSpec(
     @Autowired private val mockMvc: MockMvc,
     @MockkBean private val lolMatchService: LolMatchService
 ): BehaviorSpec({
-//    Given("정상적인 loadLolMatchesByUuid 요청") {
-//        When("Request 가 cursor = 2, count = 30 일 때") {
-//
-//        }
-//    }
+    val request = LolMatchDataFactory.createRequest()
+    val command = request.toCommand()
+
+    Given("정상적인 loadLolMatchesByUuid 요청") {
+        When("lol match 들을 정상적으로 load 했을시") {
+            val loadLolMatchesByUuidResponse = LolMatchDataFactory.createLoadLolMatchesByUuidResponse(command.count)
+            every { lolMatchService.loadLolMatchesByUuid(command) } returns loadLolMatchesByUuidResponse
+
+            Then("LoadLolMatchesByUuidResponse 리스트 반환") {
+                mockMvc.post("/by-uuid", request)
+                    .andExpect {
+                        status { MockMvcResultMatchers.status().isOk }
+                        content { loadLolMatchesByUuidResponse }
+                    }
+            }
+        }
+    }
 
     Given("잘못된 loadLolMatchesByUuid 요청") {
-        val request = LolMatchDataFactory.createRequest()
-        val command = request.toCommand()
-
         When("WebClientResponseException 에러 발생시") {
             val exception = WebClientResponseException(400, "test", null, null, null)
             every { lolMatchService.loadLolMatchesByUuid(command) } throws exception
